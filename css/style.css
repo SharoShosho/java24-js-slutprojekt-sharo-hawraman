@@ -1,0 +1,346 @@
+/* === Basstil === */
+body {
+    background: #181818;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* === Header med ridå === */
+  .cinema-header {
+    background: #000;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  
+  .curtain {
+    width: 100px;
+    height: 100%;
+    background: linear-gradient(90deg, #8b0000, #ff0000, #8b0000);
+    position: absolute;
+    top: 0;
+  }
+  
+  .left-curtain { left: 0; clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%); }
+  .right-curtain { right: 0; clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%); }
+  
+  /* === Skärmbox (likt en bioduk) === */
+  .cinema-screen {
+    background: #222;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    margin: 0 auto;
+    padding: 1rem;
+    position: relative;
+    min-height: 500px;
+    max-width: 1200px;
+  }
+  
+  .cinema-screen::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(to bottom, #333, transparent);
+    border-radius: 50%;
+    filter: blur(5px);
+  }
+  
+  /* === Footer === */
+  .cinema-footer {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    color: #777;
+    font-size: 0.9rem;
+  }
+  
+  /* === Knappar och kontroller === */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .control-btn {
+    background: #e50914;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .control-btn:hover { background: #b2070f; }
+  
+  .search-form {
+    display: flex;
+    gap: 0.5rem;
+    flex-grow: 1;
+    max-width: 500px;
+  }
+  
+  .search-form input {
+    flex-grow: 1;
+    padding: 0.5rem;
+    background: #333;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 4px;
+  }
+  
+  .sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .sort-controls select {
+    background: #333;
+    color: white;
+    padding: 0.5rem;
+    border: 1px solid #444;
+    border-radius: 4px;
+  }
+  
+  .controls label {
+    margin-right: 10px;
+    color: #fff;
+  }
+  
+  .controls div {
+    margin-bottom: 1rem;
+  }
+  
+  /* === Kort: Filmer och personer === */
+  .movie-card, .person-card {
+    background: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .movie-card:hover, .person-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+  }
+  
+  .movie-poster-container, .person-image-container {
+    height: 375px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .movie-poster, .person-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  
+  .movie-card:hover .movie-poster,
+  .person-card:hover .person-image {
+    transform: scale(1.03);
+  }
+  
+  .movie-popularity, .person-popularity {
+    background: rgba(229, 9, 20, 0.9);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+  }
+  
+  .movie-info, .person-info {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  .movie-title, .person-name {
+    font-size: 1.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 0 0.5rem 0;
+    position: relative;
+    cursor: default;
+  }
+  
+  .movie-title:hover::after,
+  .person-name:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    z-index: 10;
+  }
+  
+  .movie-details, .person-details {
+    display: flex;
+    justify-content: space-between;
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .movie-rating { font-weight: bold; }
+  
+  .movie-overview {
+    margin-top: 0.5rem;
+    color: #ccc;
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .person-department {
+    color: #e50914;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  
+  /* === "Känd för" lista === */
+  .known-for-container {
+    margin-top: 1rem;
+    background: #232323;
+    border-radius: 6px;
+    padding: 0.7rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  
+  .known-for-container h4 {
+    margin: 0 0 8px 0;
+    color: #ccc;
+  }
+  
+  .known-for-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.3rem;
+    padding: 0.2rem;
+    border-radius: 3px;
+    transition: background 0.2s;
+  }
+  
+  .known-for-list li:hover { background: #292929; }
+  
+  .known-for-list::-webkit-scrollbar {
+    width: 6px;
+  }
+  .known-for-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+  .known-for-list::-webkit-scrollbar-thumb {
+    background: #e50914;
+    border-radius: 3px;
+  }
+  .known-for-list::-webkit-scrollbar-thumb:hover {
+    background: #b2070f;
+  }
+  
+  /* Taggar för media-typ */
+  .media-type-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-right: 8px;
+    flex-shrink: 0;
+    color: #fff;
+  }
+  
+  .media-type-tag.movie { background: #e50914; }
+  .media-type-tag.tv { background: #1e90ff; }
+  
+  .media-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .media-title:hover::after {
+    content: attr(title);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    z-index: 10;
+  }
+  
+  /* === Grid för innehåll === */
+  .content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  /* === Meddelanden och laddning === */
+  .welcome-message, .error-message, .loading-spinner {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .error-message { color: #e50914; }
+  
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255,255,255,0.3);
+    border-top-color: #e50914;
+    border-radius: 50%;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* === Responsiv anpassning === */
+  @media (max-width: 768px) {
+    .controls { flex-direction: column; }
+    .search-form { width: 100%; }
+    .content { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+    .movie-poster, .person-image { height: 300px; }
+  }
+  
